@@ -1,7 +1,5 @@
-servicex-transformer==0.2
+servicex-transformer==1.0.3
 requests>=2.22.0
-kafka
-confluent_kafka==1.2.0
 pika
 minio
 pytest

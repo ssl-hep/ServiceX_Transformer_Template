@@ -96,7 +96,10 @@ def transform_single_file(file_path, output_path):
     if reason_bad is not None:
         with open('log.txt', 'r') as f:
             errors = f.read()
-            raise RuntimeError("Failed to transform input file " + file_path + ": " + reason_bad + ' -- errors: \n' + errors)
+            msg = "Failed to transform input file "
+            msg += file_path + ": " + reason_bad + ' -- errors: \n'
+            msg += errors
+            raise RuntimeError(msg)
 
 
 if __name__ == "__main__":
@@ -104,7 +107,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     assert args.result_format == 'root-file', 'We only know how to create root file output'
-    assert args.result_destination != 'kafka', 'Kafka not yet supported'
 
     if not args.output_dir and args.result_destination == 'object-store':
         messaging = None
